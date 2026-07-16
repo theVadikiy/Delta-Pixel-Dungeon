@@ -76,22 +76,3 @@ public class WornKnife extends MeleeWeapon {
 	}
 
 }
-
-	public MagesStaff(Wand wand){
-		this();
-		wand.identify();
-		wand.cursed = false;
-		this.wand = wand;
-		updateWand(false);
-		wand.curCharges = wand.maxCharges;
-	}
-
-	@Override
-	public ArrayList<String> actions(Hero hero) {
-		ArrayList<String> actions = super.actions( hero );
-		actions.add(AC_IMBUE);
-		if (wand!= null && wand.curCharges > 0) {
-			actions.add( AC_ZAP );
-		}
-		return actions;
-	}
