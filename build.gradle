@@ -14,7 +14,7 @@ allprojects {
         appName = 'Delta Pixel Dungeon'
         appPackageName = 'com.vadikiy.deltapixeldungeon'
 
-        appVersionCode = 1
+        appVersionCode = 897
         appVersionName = '0.0.1'
 
         appJavaCompatibility = JavaVersion.VERSION_11
