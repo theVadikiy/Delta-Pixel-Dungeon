@@ -217,7 +217,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SHRAPNEL_BOMB,   10, 13);
 	}
 
-	private static final int WEP_TIER1      =                               xy(1, 8);   //9 slots
+	private static final int WEP_TIER1      =                               xy(1, 8);   //8 slots
 	public static final int WORN_SHORTSWORD = WEP_TIER1+0;
 	public static final int CUDGEL          = WEP_TIER1+1;
 	public static final int GLOVES          = WEP_TIER1+2;
