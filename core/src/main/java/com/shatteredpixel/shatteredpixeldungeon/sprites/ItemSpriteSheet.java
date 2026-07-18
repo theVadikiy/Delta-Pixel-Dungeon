@@ -217,7 +217,7 @@ public class ItemSpriteSheet {
 		assignItemRect(SHRAPNEL_BOMB,   10, 13);
 	}
 
-	private static final int WEP_TIER1      =                               xy(1, 8);   //8 slots
+	private static final int WEP_TIER1      =                               xy(1, 7);   //8 slots
 	public static final int WORN_SHORTSWORD = WEP_TIER1+0;
 	public static final int CUDGEL          = WEP_TIER1+1;
 	public static final int GLOVES          = WEP_TIER1+2;
@@ -304,7 +304,7 @@ public class ItemSpriteSheet {
 	private static final int WEP_TIER6		=								xy(9,9);		//8 slots (someday)
 	public static final int WORN_KNIFE		= WEP_TIER6+0;
 	static{
-		assignItemRect(WORN_KNIFE,	16, 16);
+		assignItemRect(WORN_KNIFE,	14, 16);
 	}
 
 	private static final int MISSILE_WEP    =                               xy(1, 10);  //16 slots. 3 per tier + bow
