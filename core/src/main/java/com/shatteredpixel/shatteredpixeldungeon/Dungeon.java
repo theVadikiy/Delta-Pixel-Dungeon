@@ -370,7 +370,7 @@ public class Dungeon {
 				default:
 					level = new DeadEndLevel();
 			}
-		}else if (branch == 2) {
+		} else if (branch == 2) {
 			switch (depth) {
 				case 1:
 				case 2:
