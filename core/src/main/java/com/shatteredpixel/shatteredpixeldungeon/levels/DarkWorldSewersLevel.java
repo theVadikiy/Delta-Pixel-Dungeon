@@ -108,7 +108,7 @@ public class SewerLevel extends RegularLevel {
 	
 	@Override
 	public String tilesTex() {
-		return Assets.Environment.TILES_CH1;
+		return "environment/ch1_tiles.png";
 	}
 	
 	@Override
