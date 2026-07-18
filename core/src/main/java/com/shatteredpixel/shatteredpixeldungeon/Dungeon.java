@@ -1103,7 +1103,7 @@ public class Dungeon {
 		return step;
 
 	}
-	public static void goToDarkWorld() {
+	public static void goToDarkWorld() {			//ai code, delete later when i learn java better
 		Level.beforeTransition();
 		InterlevelScene.mode = InterlevelScene.Mode.RETURN;
 		InterlevelScene.returnDepth = depth;
