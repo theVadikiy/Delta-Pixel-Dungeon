@@ -21,6 +21,12 @@
 
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
 
+import com.shatteredpixel.shatteredpixeldungeon.effects.Flash;
+import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+import com.watabou.noosa.Game;
+import com.watabou.noosa.effects.Emitter;
+import com.watabou.utils.Timer;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
@@ -87,10 +93,28 @@ public ArrayList<String> actions(Hero hero) {
 }
 
 @Override
-public void execute(Hero hero, String action) {			//ai code, to be deleted when i know java better
-    if (action.equals(AC_FOUNTAIN)) {
-        hero.spend(1f);
-        Dungeon.goToDarkWorld();
+public void execute(Hero hero, String action) {
+    if (action.equals(AC_USE) || action.equals(AC_FOUNTAIN)) { 
+		GameScene.effects().add(new Flash(0xFFFFFFFF, 0.3f));
+Timer.schedule(new Timer.Task() {
+    @Override
+    public void run() {
+        hero.sprite.emitter().burst(ShadowParticle.UP, 10);
+    }
+}, 0.1f, 0.1f);
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                // Must run on the render thread to safely change scenes
+                Game.runOnRenderThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Dungeon.goToDarkWorld();
+                    }
+                });
+            }
+        }, 0.6f);
+
     } else {
         super.execute(hero, action);
     }
