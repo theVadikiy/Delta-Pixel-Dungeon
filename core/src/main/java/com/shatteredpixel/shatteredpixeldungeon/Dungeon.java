@@ -376,7 +376,7 @@ public class Dungeon {
 				case 2:
 				case 3:
 				case 4:
-					level = new DarkWorldSewerLewel()
+					level = new DarkWorldSewersLewel()
 		}else {
 			level = new DeadEndLevel();
 		}
