@@ -60,7 +60,7 @@ import com.watabou.utils.ColorMath;
 import com.watabou.utils.PointF;
 import com.watabou.utils.Random;
 
-public class SewerLevel extends RegularLevel {
+public class DarkWorldSewersLevel extends RegularLevel {
 
 	{
 		color1 = 0x48763c;
@@ -108,7 +108,7 @@ public class SewerLevel extends RegularLevel {
 	
 	@Override
 	public String tilesTex() {
-		return "environment/ch1_tiles.png";
+		return Assets.Environment.TILES_CH1;
 	}
 	
 	@Override

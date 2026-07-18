@@ -22,10 +22,13 @@
 package com.shatteredpixel.shatteredpixeldungeon.items.weapon.melee;
 
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
+import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
 import com.shatteredpixel.shatteredpixeldungeon.actors.hero.Hero;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
+
+import java.util.ArrayList;
 
 public class WornKnife extends MeleeWeapon {
 
@@ -86,9 +89,8 @@ public ArrayList<String> actions(Hero hero) {
 @Override
 public void execute(Hero hero, String action) {
     if (action.equals(AC_FOUNTAIN)) {
-        Dungeon.goToDarkWorld();
         hero.spend(1f);
-        hero.sprite.operate(hero.pos);
+        Dungeon.goToDarkWorld();
     } else {
         super.execute(hero, action);
     }

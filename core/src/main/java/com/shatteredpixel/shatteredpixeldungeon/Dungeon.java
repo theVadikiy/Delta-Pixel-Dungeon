@@ -59,6 +59,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.CavesLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.CityBossLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.CityLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.DeadEndLevel;
+import com.shatteredpixel.shatteredpixeldungeon.levels.DarkWorldSewersLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.HallsBossLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.HallsLevel;
 import com.shatteredpixel.shatteredpixeldungeon.levels.LastLevel;
@@ -75,6 +76,7 @@ import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.secret.SecretRoom;
 import com.shatteredpixel.shatteredpixeldungeon.levels.rooms.special.SpecialRoom;
 import com.shatteredpixel.shatteredpixeldungeon.messages.Messages;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
+import com.shatteredpixel.shatteredpixeldungeon.scenes.InterlevelScene;
 import com.shatteredpixel.shatteredpixeldungeon.ui.QuickSlotButton;
 import com.shatteredpixel.shatteredpixeldungeon.ui.Toolbar;
 import com.shatteredpixel.shatteredpixeldungeon.utils.DungeonSeed;
@@ -376,7 +378,12 @@ public class Dungeon {
 				case 2:
 				case 3:
 				case 4:
-					level = new DarkWorldSewersLewel()
+					level = new DarkWorldSewersLevel();
+					break;
+				default:
+					level = new DeadEndLevel();
+					break;
+			}
 		}else {
 			level = new DeadEndLevel();
 		}
@@ -1096,18 +1103,13 @@ public class Dungeon {
 		return step;
 
 	}
-public static void goToDarkWorld() {
-    int targetDepth = Dungeon.depth; // keep same depth
-    int targetBranch = 2;
-    // Create level for that branch/depth
-    Level newLevel;
-    switch (targetDepth) {
-        case 1: case 2: case 3: case 4:
-            newLevel = new DarkWorldSewerLevel();
-            break;
-    }
-    newLevel.create();
-    switchLevel(newLevel, newLevel.entrance());
-}
+	public static void goToDarkWorld() {
+		Level.beforeTransition();
+		InterlevelScene.mode = InterlevelScene.Mode.RETURN;
+		InterlevelScene.returnDepth = depth;
+		InterlevelScene.returnBranch = 2;
+		InterlevelScene.returnPos = -1;
+		Game.switchScene( InterlevelScene.class );
+	}
 
 }
