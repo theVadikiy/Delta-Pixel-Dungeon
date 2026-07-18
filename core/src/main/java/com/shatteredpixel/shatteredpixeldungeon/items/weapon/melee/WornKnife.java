@@ -25,8 +25,9 @@ import com.shatteredpixel.shatteredpixeldungeon.effects.Flash;
 import com.shatteredpixel.shatteredpixeldungeon.effects.particles.ShadowParticle;
 import com.shatteredpixel.shatteredpixeldungeon.scenes.GameScene;
 import com.watabou.noosa.Game;
-import com.watabou.noosa.effects.Emitter;
-import com.watabou.utils.Timer;
+import com.watabou.noosa.particles.Emitter;
+import com.watabou.noosa.tweeners.Tweener;
+import com.watabou.utils.Callback;
 import com.shatteredpixel.shatteredpixeldungeon.Assets;
 import com.shatteredpixel.shatteredpixeldungeon.Dungeon;
 import com.shatteredpixel.shatteredpixeldungeon.actors.Char;
@@ -37,6 +38,9 @@ import com.shatteredpixel.shatteredpixeldungeon.sprites.ItemSpriteSheet;
 import java.util.ArrayList;
 
 public class WornKnife extends MeleeWeapon {
+
+	public static final String AC_USE = "USE";
+	public static final String AC_FOUNTAIN = "CREATE_FOUNTAIN";
 
 	{
 		image = ItemSpriteSheet.WORN_KNIFE;
@@ -83,11 +87,11 @@ public class WornKnife extends MeleeWeapon {
 		int dmgBoost = 3 + level;
 		return augment.damageFactor(min(level)+dmgBoost) + "-" + augment.damageFactor(max(level)+dmgBoost);
 	}
-public static final String AC_FOUNTAIN = "CREATE_FOUNTAIN";
 
 @Override
 public ArrayList<String> actions(Hero hero) {
     ArrayList<String> actions = super.actions(hero);
+    actions.add(AC_USE);
     actions.add(AC_FOUNTAIN);
     return actions;
 }
@@ -95,25 +99,29 @@ public ArrayList<String> actions(Hero hero) {
 @Override
 public void execute(Hero hero, String action) {
     if (action.equals(AC_USE) || action.equals(AC_FOUNTAIN)) { 
-		GameScene.effects().add(new Flash(0xFFFFFFFF, 0.3f));
-Timer.schedule(new Timer.Task() {
-    @Override
-    public void run() {
-        hero.sprite.emitter().burst(ShadowParticle.UP, 10);
-    }
-}, 0.1f, 0.1f);
-        Timer.schedule(new Timer.Task() {
-            @Override
-            public void run() {
-                // Must run on the render thread to safely change scenes
-                Game.runOnRenderThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Dungeon.goToDarkWorld();
-                    }
-                });
-            }
-        }, 0.6f);
+		GameScene.effect(new Flash(0xFFFFFFFF, 0.3f));
+
+		hero.sprite.parent.add(new Tweener(hero.sprite, 0.5f) {
+			private float lastBurst = 0;
+			@Override
+			protected void updateValues(float progress) {
+				if (elapsed - lastBurst >= 0.1f) {
+					Emitter e = hero.sprite.emitter();
+					if (e != null) e.burst(ShadowParticle.UP, 10);
+					lastBurst = elapsed;
+				}
+			}
+		});
+
+		hero.sprite.parent.add(new Tweener(hero.sprite, 0.6f) {
+			@Override
+			protected void updateValues(float progress) {}
+
+			@Override
+			protected void onComplete() {
+				Dungeon.goToDarkWorld();
+			}
+		});
 
     } else {
         super.execute(hero, action);
