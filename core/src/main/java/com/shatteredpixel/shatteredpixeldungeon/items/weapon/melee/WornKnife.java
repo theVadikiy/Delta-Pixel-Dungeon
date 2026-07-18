@@ -87,7 +87,7 @@ public ArrayList<String> actions(Hero hero) {
 }
 
 @Override
-public void execute(Hero hero, String action) {
+public void execute(Hero hero, String action) {			//ai code, to be deleted when i know java better
     if (action.equals(AC_FOUNTAIN)) {
         hero.spend(1f);
         Dungeon.goToDarkWorld();
