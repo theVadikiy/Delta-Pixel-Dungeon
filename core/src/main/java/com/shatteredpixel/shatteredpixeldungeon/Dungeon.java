@@ -1096,5 +1096,18 @@ public class Dungeon {
 		return step;
 
 	}
+public static void goToDarkWorld() {
+    int targetDepth = Dungeon.depth; // keep same depth
+    int targetBranch = 2;
+    // Create level for that branch/depth
+    Level newLevel;
+    switch (targetDepth) {
+        case 1: case 2: case 3: case 4:
+            newLevel = new DarkWorldSewerLevel();
+            break;
+    }
+    newLevel.create();
+    switchLevel(newLevel, newLevel.entrance());
+}
 
 }
