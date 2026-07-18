@@ -370,7 +370,14 @@ public class Dungeon {
 				default:
 					level = new DeadEndLevel();
 			}
-		} else {
+		}else if (branch == 2) {
+			switch (depth) {
+				case 1:
+				case 2:
+				case 3:
+				case 4:
+					level = new DarkWorldSewerLewel()
+		}else {
 			level = new DeadEndLevel();
 		}
 
