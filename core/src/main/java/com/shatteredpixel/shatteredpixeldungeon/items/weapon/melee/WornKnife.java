@@ -74,15 +74,24 @@ public class WornKnife extends MeleeWeapon {
 		int dmgBoost = 3 + level;
 		return augment.damageFactor(min(level)+dmgBoost) + "-" + augment.damageFactor(max(level)+dmgBoost);
 	}
-	protected void onUse(Hero hero) {
-		public static void goToDarkWorld() {
-    int targetDepth = Dungeon.depth;
-    int targetBranch = 2;
-    Level newLevel;
-    // ... create level ...
-    newLevel.create();
-    Dungeon.switchLevel(newLevel, newLevel.entrance());
+public static final String AC_FOUNTAIN = "CREATE_FOUNTAIN";
+
+@Override
+public ArrayList<String> actions(Hero hero) {
+    ArrayList<String> actions = super.actions(hero);
+    actions.add(AC_FOUNTAIN);
+    return actions;
 }
-	}
+
+@Override
+public void execute(Hero hero, String action) {
+    if (action.equals(AC_FOUNTAIN)) {
+        Dungeon.goToDarkWorld();
+        hero.spend(1f);
+        hero.sprite.operate(hero.pos);
+    } else {
+        super.execute(hero, action);
+    }
+}
 
 }
