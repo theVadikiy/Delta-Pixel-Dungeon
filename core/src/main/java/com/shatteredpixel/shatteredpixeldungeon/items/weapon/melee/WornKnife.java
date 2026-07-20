@@ -107,7 +107,7 @@ public void execute(Hero hero, String action) {
 			protected void updateValues(float progress) {
 				if (elapsed - lastBurst >= 0.3f) {
 					Emitter e = hero.sprite.emitter();
-					if (e != null) e.burst(WindParticle.UP, 15);
+					if (e != null) e.burst(ShadowParticle.UP, 15);
 					lastBurst = elapsed;
 				}
 			}
