@@ -99,7 +99,7 @@ public ArrayList<String> actions(Hero hero) {
 @Override
 public void execute(Hero hero, String action) {
     if (action.equals(AC_USE) || action.equals(AC_FOUNTAIN)) { 
-		GameScene.effect(new Flash(0xFFFFFFFF, 5.0f));
+		GameScene.effect(new Flash(0xFFFFFFFF, 10.0f));
 
 		hero.sprite.parent.add(new Tweener(hero.sprite, 5.0f) {
 			private float lastBurst = 0;
@@ -107,7 +107,7 @@ public void execute(Hero hero, String action) {
 			protected void updateValues(float progress) {
 				if (elapsed - lastBurst >= 0.3f) {
 					Emitter e = hero.sprite.emitter();
-					if (e != null) e.burst(ShadowParticle.UP, 15);
+					if (e != null) e.burst(ShadowParticle.UP, 40);
 					lastBurst = elapsed;
 				}
 			}
