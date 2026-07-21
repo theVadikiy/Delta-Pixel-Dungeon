@@ -99,7 +99,9 @@ public ArrayList<String> actions(Hero hero) {
 @Override
 public void execute(Hero hero, String action) {
     if (action.equals(AC_USE) || action.equals(AC_FOUNTAIN)) { 
-		GameScene.effect(new Flash(0xFFFFFFFF, 10.0f));
+		hero.sprite.play(hero.sprite.ATTACK);
+		wait(0.5f);
+		GameScene.effect(new Flash(0xFFFFFFFF, 20.0f));
 
 		hero.sprite.parent.add(new Tweener(hero.sprite, 5.0f) {
 			private float lastBurst = 0;

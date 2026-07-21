@@ -187,6 +187,7 @@ public enum Catalog {
 	static {
 
 		MELEE_WEAPONS.addItems(Generator.Category.WEP_T1.classes);
+		MELEE_WEAPONS.addItems(Generator.Category.WEP_T6.classes);
 		MELEE_WEAPONS.addItems(Generator.Category.WEP_T2.classes);
 		MELEE_WEAPONS.addItems(Generator.Category.WEP_T3.classes);
 		MELEE_WEAPONS.addItems(Generator.Category.WEP_T4.classes);
