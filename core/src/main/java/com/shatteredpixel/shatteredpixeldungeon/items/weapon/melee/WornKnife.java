@@ -101,6 +101,7 @@ public void execute(Hero hero, String action) {
     if (action.equals(AC_USE) || action.equals(AC_FOUNTAIN)) { 
 		hero.sprite.play(hero.sprite.ATTACK);
 		wait(0.5f);
+		Sample.INSTANCE.play( Assets.Sounds.DARK_FOUNTAIN);
 		GameScene.effect(new Flash(0xFFFFFFFF, 20.0f));
 
 		hero.sprite.parent.add(new Tweener(hero.sprite, 5.0f) {

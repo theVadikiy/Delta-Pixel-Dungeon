@@ -222,6 +222,7 @@ public class Assets {
 		public static final String SCAN     = "sounds/scan.mp3";
 		public static final String SHEEP    = "sounds/sheep.mp3";
 		public static final String MINE    = "sounds/mine.mp3";
+		public static final String DARK_FOUNTAIN = "sounds/dark_fountain.mp3";
 
 		public static final String[] all = new String[]{
 				CLICK, BADGE, GOLD,
@@ -234,7 +235,7 @@ public class Assets {
 				DESCEND, EAT, READ, LULLABY, DRINK, SHATTER, ZAP, LIGHTNING, LEVELUP, DEATH,
 				CHALLENGE, CURSED, TRAP, EVOKE, TOMB, ALERT, MELD, BOSS, BLAST, PLANT, RAY, BEACON,
 				TELEPORT, CHARMS, MASTERY, PUFF, ROCKS, BURNING, FALLING, GHOST, SECRET, BONES,
-				BEE, DEGRADE, MIMIC, DEBUFF, CHARGEUP, GAS, CHAINS, SCAN, SHEEP, MINE
+				BEE, DEGRADE, MIMIC, DEBUFF, CHARGEUP, GAS, CHAINS, SCAN, SHEEP, MINE, DARK_FOUNTAIN
 		};
 	}
 
