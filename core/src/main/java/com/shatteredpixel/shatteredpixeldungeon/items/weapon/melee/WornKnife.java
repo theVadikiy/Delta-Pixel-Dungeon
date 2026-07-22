@@ -40,8 +40,7 @@ import java.util.ArrayList;
 
 public class WornKnife extends MeleeWeapon {
 
-	public static final String AC_USE = "USE";
-	public static final String AC_FOUNTAIN = "CREATE_FOUNTAIN";
+	public static final String AC_FOUNTAIN = "FOUNTAIN";
 
 	{
 		image = ItemSpriteSheet.WORN_KNIFE;
