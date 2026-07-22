@@ -91,7 +91,6 @@ public class WornKnife extends MeleeWeapon {
 @Override
 public ArrayList<String> actions(Hero hero) {
     ArrayList<String> actions = super.actions(hero);
-    actions.add(AC_USE);
     actions.add(AC_FOUNTAIN);
     return actions;
 }
